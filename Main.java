@@ -94,3 +94,63 @@ public class Main {
         }
     }
 }
+
+// git commit -m "Day 2: Added commodityProfitInRange(), bestDayOfMonth(), bestMonthForCommodity()" Eljan - 20240602089
+
+    public static int commodityProfitInRange(String commodity, int fromDay, int toDay) {
+        int cIndex = getCommodityIndex(commodity);
+        if (cIndex == -1 || fromDay < 1 || toDay > DAYS || fromDay > toDay) return -99999;
+
+        int sum = 0;
+        int from = fromDay - 1;
+        int to = toDay - 1;
+
+        for (int m = 0; m < MONTHS; m++) {
+            for (int d = from; d <= to; d++) {
+                sum += profitData[m][d][cIndex];
+            }
+        }
+        return sum;
+    }
+
+    public static int bestDayOfMonth(int month) {
+        if (month < 0 || month >= MONTHS) return -1;
+
+        int bestDay = 1;
+        int bestTotal = Integer.MIN_VALUE;
+
+        for (int d = 0; d < DAYS; d++) {
+            int total = 0;
+            for (int c = 0; c < COMMS; c++) {
+                total += profitData[month][d][c];
+            }
+
+            if (total > bestTotal) {
+                bestTotal = total;
+                bestDay = d + 1;
+            }
+        }
+        return bestDay;
+    }
+
+    public static String bestMonthForCommodity(String commodity) {
+        int cIndex = getCommodityIndex(commodity);
+        if (cIndex == -1) return "INVALID_COMMODITY";
+
+        int bestMonth = 0;
+        int bestSum = Integer.MIN_VALUE;
+
+        for (int m = 0; m < MONTHS; m++) {
+            int sum = 0;
+            for (int d = 0; d < DAYS; d++) {
+                sum += profitData[m][d][cIndex];
+            }
+
+            if (sum > bestSum) {
+                bestSum = sum;
+                bestMonth = m;
+            }
+        }
+        return months[bestMonth];
+}
+
