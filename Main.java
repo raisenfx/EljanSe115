@@ -154,3 +154,54 @@ public class Main {
         return months[bestMonth];
 }
 
+//git commit -m "Day 3: Added consecutiveLossDays(), daysAboveThreshold(), biggestDailySwing()" Eljan - 20240602089
+
+    public static int consecutiveLossDays(String commodity) {
+        int cIndex = getCommodityIndex(commodity);
+        if (cIndex == -1) return -1;
+
+        int best = 0;
+        int cur = 0;
+
+        for (int m = 0; m < MONTHS; m++) {
+            for (int d = 0; d < DAYS; d++) {
+                if (profitData[m][d][cIndex] < 0) {
+                    cur++;
+                    if (cur > best) best = cur;
+                } else {
+                    cur = 0;
+                }
+            }
+        }
+        return best;
+    }
+
+    public static int daysAboveThreshold(String commodity, int threshold) {
+        int cIndex = getCommodityIndex(commodity);
+        if (cIndex == -1) return -1;
+
+        int count = 0;
+        for (int m = 0; m < MONTHS; m++) {
+            for (int d = 0; d < DAYS; d++) {
+                if (profitData[m][d][cIndex] > threshold) count++;
+            }
+        }
+        return count;
+    }
+
+    public static int biggestDailySwing(int month) {
+        if (month < 0 || month >= MONTHS) return -99999;
+
+        int maxSwing = 0;
+        for (int d = 1; d < DAYS; d++) {
+            int prev = 0, cur = 0;
+            for (int c = 0; c < COMMS; c++) {
+                prev += profitData[month][d - 1][c];
+                cur += profitData[month][d][c];
+            }
+            int diff = cur - prev;
+            if (diff < 0) diff = -diff;
+            if (diff > maxSwing) maxSwing = diff;
+        }
+        return maxSwing;
+}
