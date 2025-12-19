@@ -205,3 +205,46 @@ public class Main {
         }
         return maxSwing;
 }
+
+//git commit -m "Day 4: Final methods compareTwoCommodities(), bestWeekOfMonth() - Project complete" Eljan - 20240602089
+        public static String compareTwoCommodities(String c1, String c2) {
+        int i1 = getCommodityIndex(c1);
+        int i2 = getCommodityIndex(c2);
+        if (i1 == -1 || i2 == -1) return "INVALID_COMMODITY";
+
+        int sum1 = 0, sum2 = 0;
+        for (int m = 0; m < MONTHS; m++) {
+            for (int d = 0; d < DAYS; d++) {
+                sum1 += profitData[m][d][i1];
+                sum2 += profitData[m][d][i2];
+            }
+        }
+
+        if (sum1 > sum2) return c1 + " is better by " + (sum1 - sum2);
+        if (sum2 > sum1) return c2 + " is better by " + (sum2 - sum1);
+        return "Equal";
+    }
+
+    public static String bestWeekOfMonth(int month) {
+        if (month < 0 || month >= MONTHS) return "INVALID_MONTH";
+
+        int bestWeek = 1;
+        int bestSum = Integer.MIN_VALUE;
+
+        for (int w = 0; w < 4; w++) {
+            int start = w * 7;
+            int sum = 0;
+            for (int d = start; d < start + 7; d++) {
+                for (int c = 0; c < COMMS; c++) {
+                    sum += profitData[month][d][c];
+                }
+            }
+            if (sum > bestSum) {
+                bestSum = sum;
+                bestWeek = w + 1;
+            }
+        }
+        return "Week " + bestWeek;
+    }
+
+
