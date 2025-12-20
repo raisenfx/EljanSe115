@@ -1,4 +1,4 @@
-//git commit -m "Day 1: Implemented project structure, loadData(), mostProfitableCommodityInMonth(), and totalProfitOnDay()" Eljan - 20240602089
+//git commit -m "Day 1: Implemented project structure, loadData(), mostProfitableCommodityInMonth(), and totalProfitOnDay()" Eljan - 20240602089.
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -95,7 +95,7 @@ public class Main {
     }
 }
 
-// git commit -m "Day 2: Added commodityProfitInRange(), bestDayOfMonth(), bestMonthForCommodity()" Eljan - 20240602089
+// git commit -m "Day 2: Added commodityProfitInRange(), bestDayOfMonth(), bestMonthForCommodity()" Eljan - 20240602089.
 
     public static int commodityProfitInRange(String commodity, int fromDay, int toDay) {
         int cIndex = getCommodityIndex(commodity);
@@ -154,7 +154,7 @@ public class Main {
         return months[bestMonth];
 }
 
-//git commit -m "Day 3: Added consecutiveLossDays(), daysAboveThreshold(), biggestDailySwing()" Eljan - 20240602089
+//git commit -m "Day 3: Added consecutiveLossDays(), daysAboveThreshold(), biggestDailySwing()" Eljan - 20240602089.
 
     public static int consecutiveLossDays(String commodity) {
         int cIndex = getCommodityIndex(commodity);
@@ -206,7 +206,7 @@ public class Main {
         return maxSwing;
 }
 
-//git commit -m "Day 4: Final methods compareTwoCommodities(), bestWeekOfMonth() - Project complete" Eljan - 20240602089
+//git commit -m "Day 4: Final methods compareTwoCommodities(), bestWeekOfMonth() - Project complete" Eljan - 20240602089.
         public static String compareTwoCommodities(String c1, String c2) {
         int i1 = getCommodityIndex(c1);
         int i2 = getCommodityIndex(c2);
